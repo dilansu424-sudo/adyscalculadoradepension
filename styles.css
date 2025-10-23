@@ -1,0 +1,225 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('background.jpg') repeat;
+}
+
+.header-text {
+    text-align: center;
+    width: 100%;
+    padding: 30px 0;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+}
+
+.adys-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-size: 96px;
+    color: #F4A700;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+.sub-title {
+    font-family: 'Georgia', serif;
+    font-size: 48px;
+    color: #F0F0F0;
+    margin: 10px 0 0;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    transition: transform 0.3s ease;
+    margin-top: 180px; /* Ajustado para evitar solapamiento con el header fijo */
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+h1 {
+    text-align: center;
+    color: #1e88e5;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #424242;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #bbdefb;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #1e88e5;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #1e88e5, #42a5f5);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #1565b3, #2196f3);
+    transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+        margin-top: 140px;
+    }
+
+    .adys-title {
+        font-size: 72px;
+    }
+
+    .sub-title {
+        font-size: 36px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+/* Print styles for new window */
+.print-container {
+    padding: 40px;
+    background: #FFFFFF;
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.print-logo-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.print-logo {
+    height: auto;
+}
+
+.print-logo.iess {
+    max-width: 180px;
+}
+
+.print-logo.adys {
+    max-width: 220px;
+}
+
+.print-title {
+    font-size: 32px;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.print-message {
+    font-size: 18px;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.print-data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.print-data-card {
+    background: #F5F5F5;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.print-data-card label {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+.print-data-card span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #F4A700;
+}
+
+.print-data-card.final-result {
+    grid-column: span 2;
+    background: #FFF3E0;
+}
+
+.print-button {
+    display: block;
+    margin: 0 auto;
+    padding: 12px 30px;
+    background: #F4A700;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.print-button:hover {
+    background: #E09400;
+}
+
+@media print {
+    .print-button {
+        display: none;
+    }
+}

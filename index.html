@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pensión IESS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Georgia&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-text">
+        <h2 class="adys-title">ADYS</h2>
+        <p class="sub-title">Asesoría & Servicios</p>
+    </header>
+    <div class="container">
+        <h1>Simulador de Pensión IESS</h1>
+        <form id="formulario">
+            <label for="cliente">Nombre del Cliente:</label>
+            <input type="text" id="cliente" required>
+            
+            <label for="años">Años de aportes (5-40):</label>
+            <input type="number" id="años" min="5" max="40" required>
+            
+            <label for="sueldo">Promedio del sueldo:</label>
+            <input type="number" id="sueldo" min="0" step="0.01" required>
+            
+            <button type="button" onclick="calcularPension()">Calcular</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
