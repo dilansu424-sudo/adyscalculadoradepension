@@ -112,8 +112,8 @@ function calcularPension() {
     const decimoTerceroAcumulado = pension; // Suma total de pensiones / 12, igual a la renta constante
     const decimoTerceroMensual = pension / 12; // Mensualización
     // Cálculo del décimo cuarto (SBU 2025: $470)
-    const decimoCuartoAcumulado = 470.00; // Pago único anual
-    const decimoCuartoMensual = 470.00 / 12; // $39.17 mensual
+    const decimoCuartoAcumulado = 482.00; // Pago único anual
+    const decimoCuartoMensual = 482.00 / 12; // $39.17 mensual
 
     // Crear una nueva ventana para los resultados
     const printWindow = window.open('', '', 'height=700, width=900');
@@ -165,4 +165,5 @@ function calcularPension() {
         </html>
     `);
     printWindow.document.close();
+
 }
