@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.container');
     const passwordPrompt = prompt("Ingrese la contraseña para acceder al simulador:");
     const correctPassword = "personal_adys2025";
-
     if (passwordPrompt !== correctPassword) {
         alert("Contraseña incorrecta. Acceso denegado.");
         container.style.display = 'none';
@@ -16,70 +15,41 @@ function calcularPension() {
     const cliente = document.getElementById('cliente').value;
     const años = parseInt(document.getElementById('años').value);
     const sueldo = parseFloat(document.getElementById('sueldo').value);
-
     if (!cliente || isNaN(años) || isNaN(sueldo) || años < 5 || años > 40) {
         alert('Por favor, ingrese un nombre y valores válidos (años entre 5 y 40).');
         return;
     }
 
-    // Tabla de coeficientes original
+    // Tabla de coeficientes (sin cambios)
     const coefficients = {
-        5: 0.4375,
-        6: 0.4500,
-        7: 0.4625,
-        8: 0.4750,
-        9: 0.4875,
-        10: 0.5000,
-        11: 0.5125,
-        12: 0.5250,
-        13: 0.5375,
-        14: 0.55,
-        15: 0.5625,
-        16: 0.5750,
-        17: 0.5875,
-        18: 0.6000,
-        19: 0.6125,
-        20: 0.6250,
-        21: 0.6375,
-        22: 0.65,
-        23: 0.6625,
-        24: 0.6750,
-        25: 0.6875,
-        26: 0.7000,
-        27: 0.7125,
-        28: 0.7250,
-        29: 0.7375,
-        30: 0.7500,
-        31: 0.7625,
-        32: 0.7750,
-        33: 0.7875,
-        34: 0.8000,
-        35: 0.8125,
-        36: 0.8325,
-        37: 0.8605,
-        38: 0.8970,
-        39: 0.9430,
+        5: 0.4375, 6: 0.4500, 7: 0.4625, 8: 0.4750, 9: 0.4875,
+        10: 0.5000, 11: 0.5125, 12: 0.5250, 13: 0.5375, 14: 0.55,
+        15: 0.5625, 16: 0.5750, 17: 0.5875, 18: 0.6000, 19: 0.6125,
+        20: 0.6250, 21: 0.6375, 22: 0.65, 23: 0.6625, 24: 0.6750,
+        25: 0.6875, 26: 0.7000, 27: 0.7125, 28: 0.7250, 29: 0.7375,
+        30: 0.7500, 31: 0.7625, 32: 0.7750, 33: 0.7875, 34: 0.8000,
+        35: 0.8125, 36: 0.8325, 37: 0.8605, 38: 0.8970, 39: 0.9430,
         40: 1.0000
     };
 
-    // Tablas de pensiones mínimas y máximas
+    // Tablas de pensiones mínimas y máximas actualizadas para SBU $482 (2026)
     const minPensions = {
-        '0-10': { percentage: 0.50, amount: 235.00 },
-        '11-20': { percentage: 0.60, amount: 282.00 },
-        '21-30': { percentage: 0.70, amount: 329.00 },
-        '31-35': { percentage: 0.80, amount: 376.00 },
-        '36-39': { percentage: 0.90, amount: 423.00 },
-        '40+': { percentage: 1.00, amount: 470.00 }
+        '0-10': { percentage: 0.50, amount: 241.00 },   // 50% de 482
+        '11-20': { percentage: 0.60, amount: 289.20 },  // 60% de 482
+        '21-30': { percentage: 0.70, amount: 337.40 },  // 70% de 482
+        '31-35': { percentage: 0.80, amount: 385.60 },  // 80% de 482
+        '36-39': { percentage: 0.90, amount: 433.80 },  // 90% de 482
+        '40+': { percentage: 1.00, amount: 482.00 }    // 100% de 482
     };
 
     const maxPensions = {
-        '0-10': { percentage: 2.50, amount: 1175.00 },
-        '15-19': { percentage: 3.00, amount: 1410.00 },
-        '20-24': { percentage: 3.50, amount: 1645.00 },
-        '25-29': { percentage: 4.00, amount: 1880.00 },
-        '30-34': { percentage: 4.50, amount: 2115.00 },
-        '35-39': { percentage: 5.00, amount: 2350.00 },
-        '40+': { percentage: 5.50, amount: 2585.00 }
+        '0-10': { percentage: 2.50, amount: 1205.00 }, // 250% de 482
+        '15-19': { percentage: 3.00, amount: 1446.00 }, // 300% de 482
+        '20-24': { percentage: 3.50, amount: 1687.00 }, // 350% de 482
+        '25-29': { percentage: 4.00, amount: 1928.00 }, // 400% de 482
+        '30-34': { percentage: 4.50, amount: 2169.00 }, // 450% de 482
+        '35-39': { percentage: 5.00, amount: 2410.00 }, // 500% de 482
+        '40+': { percentage: 5.50, amount: 2651.00 }   // 550% de 482
     };
 
     // Determinar rango de años para mínimas y máximas
@@ -111,9 +81,10 @@ function calcularPension() {
     // Cálculo del décimo tercero (basado en la renta aproximada a conceder)
     const decimoTerceroAcumulado = pension; // Suma total de pensiones / 12, igual a la renta constante
     const decimoTerceroMensual = pension / 12; // Mensualización
-    // Cálculo del décimo cuarto (SBU 2025: $470)
+
+    // Cálculo del décimo cuarto (SBU 2026: $482)
     const decimoCuartoAcumulado = 482.00; // Pago único anual
-    const decimoCuartoMensual = 482.00 / 12; // $39.17 mensual
+    const decimoCuartoMensual = 482.00 / 12; // Mensualización
 
     // Crear una nueva ventana para los resultados
     const printWindow = window.open('', '', 'height=700, width=900');
@@ -151,7 +122,7 @@ function calcularPension() {
                 <p class="print-message">A continuación, se presenta el informe de su simulación de jubilación.</p>
                 <div class="print-data-grid">
                     <div class="print-data-card"><label>Promedio Base:</label><span>${formatNumber(sueldo)}</span></div>
-                    <div class="print-data-card"><label>Coefficiente Único:</label><span>${coeficiente.toLocaleString('es-ES', { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</span></div>
+                    <div class="print-data-card"><label>Coeficiente Único:</label><span>${coeficiente.toLocaleString('es-ES', { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</span></div>
                     <div class="print-data-card"><label>Subtotal Renta Aproximada:</label><span>${formatNumber(subtotal)}</span></div>
                     <div class="print-data-card final-result"><label>Renta Aproximada a Conceder:</label><span>${formatNumber(pension)}</span></div>
                     <div class="print-data-card"><label>Décimo Tercero Acumulado (Anual):</label><span>${formatNumber(decimoTerceroAcumulado)}</span></div>
@@ -165,5 +136,4 @@ function calcularPension() {
         </html>
     `);
     printWindow.document.close();
-
 }
